@@ -11,7 +11,12 @@ jobs:
     runs-on: [mac-arm-sh]
                                                                                                                                                                                                                                          
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout Source
+      uses: actions/checkout@v4
+
+    - name: Create coverity install directory                                                                                                                                                                                                  
+      run: mkdir -p coverity-cnc-install-directory                                                                                                                                                                                                 
+      shell: bash
                                                                                                                                                                                                                                          
     - name: Coverity Scan
       uses: blackduck-inc/black-duck-security-scan@v2
@@ -20,6 +25,6 @@ jobs:
         coverity_user: ${{ secrets.COVERITY_USER }}
         coverity_passphrase: ${{ secrets.COVERITY_PASSPHRASE }}
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        coverity_install_directory: coverity-install-directory
+        coverity_install_directory: coverity-cnc-install-directory
 
       
